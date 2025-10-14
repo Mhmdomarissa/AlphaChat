@@ -1,0 +1,32 @@
+# System and IDE files
+.bash_history
+.cache/
+.cursor-server/
+.cursor/
+.gitconfig
+.gnupg/
+.jupyter/
+.ssh/
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
