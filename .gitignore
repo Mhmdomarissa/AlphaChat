@@ -23,6 +23,33 @@ venv/
 dist/
 build/
 
+# Docker and build artifacts
+.docker/
+docker/buildx/
+docker/data/
+*.dockerfile
+Dockerfile.custom
+
+# Node.js and npm cache
+.npm/
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm-cache/
+
+# Build and cache directories
+content-v2/
+buildx/
+refs/
+activity/
+token_seed*
+.buildNodeID
+.lock
+
+# Generated files and artifacts
+*[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]*
+
 # Logs
 *.log
 
