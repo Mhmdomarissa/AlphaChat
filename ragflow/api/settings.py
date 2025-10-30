@@ -77,7 +77,7 @@ SANDBOX_ENABLED = 0
 SANDBOX_HOST = None
 STRONG_TEST_COUNT = int(os.environ.get("STRONG_TEST_COUNT", "8"))
 
-BUILTIN_EMBEDDING_MODELS = ["BAAI/bge-large-zh-v1.5@BAAI", "maidalun1020/bce-embedding-base_v1@Youdao"]
+BUILTIN_EMBEDDING_MODELS = ["BAAI/bge-m3@BAAI", "maidalun1020/bce-embedding-base_v1@Youdao"]
 
 SMTP_CONF = None
 MAIL_SERVER = ""

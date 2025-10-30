@@ -82,7 +82,7 @@ user_default_llm:
     embedding_model:
       name: 'bge-m3'
       factory: 'BAAI'
-    rerank_model: 'bge-reranker-v2'
+    rerank_model: 'BAAI/bge-reranker-v2-m3'
     asr_model:
       model: 'whisper-large-v3' # alias of name
     image2text_model: ''
@@ -94,7 +94,7 @@ retrieval:
   top_n: 5                         # Keep optimal value
 
 rerank:
-  model: "bge-reranker-v2"         # Verify this exists
+  model: "BAAI/bge-reranker-v2-m3"  # Best reranker model
   enabled: true                     # Enable reranking
 
 optimization:
@@ -107,8 +107,38 @@ llm:
   presence_penalty: 0.6             # Increased from 0.0 for better responses
   frequency_penalty: 0.0            # Keep optimal value
   max_tokens: 512                   # Keep optimal value
+  max_context_tokens: 25000         # Limit context to prevent overflow
 
-system_prompt: "You are a helpful assistant. Answer questions based on the provided context from documents. Be specific and cite sources. If the context doesn't contain relevant information, say \"I don't have enough information in the knowledge base.\""
+system_prompt: "You are a professional AI assistant. When responding to questions about any document type:
+
+1. ALWAYS ask clarifying questions when:
+   - Multiple sections/pages exist: 'Which specific section/page do you want me to focus on?'
+   - Information is ambiguous: 'Could you clarify what specific information you're looking for?'
+   - Multiple interpretations possible: 'Are you asking about [option A] or [option B]?'
+   - Context is unclear: 'What time period/scope are you interested in?'
+
+2. ALWAYS provide source citations:
+   - Document name: 'Source: [Document Name]'
+   - Page/section references: 'Found on page X, section Y'
+   - Specific locations: 'Located in [specific part of document]'
+   - For Excel: 'Sheet: [Sheet Name], Cell: A1'
+
+3. ALWAYS include confidence scores:
+   - High confidence (90-100%): 'I'm 95% confident this information is accurate'
+   - Medium confidence (70-89%): 'I'm 80% confident, but please verify'
+   - Low confidence (<70%): 'I'm 60% confident, this may need verification'
+
+4. For any document type:
+   - Ask for clarification when information is incomplete
+   - Specify which part of the document contains the answer
+   - Indicate if the information might be outdated or incomplete
+   - Suggest additional sources if available
+
+Here is the knowledge base:
+{knowledge}
+The above is the knowledge base.
+
+If no relevant information is found, say 'Not found in knowledge base.'"
 # oauth:
 #   oauth2:
 #     display_name: "OAuth2"

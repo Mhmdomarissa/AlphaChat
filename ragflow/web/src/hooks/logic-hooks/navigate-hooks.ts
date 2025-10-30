@@ -46,42 +46,6 @@ export const useNavigatePage = () => {
     [navigate],
   );
 
-  const navigateToAgents = useCallback(() => {
-    navigate(Routes.Agents);
-  }, [navigate]);
-
-  const navigateToAgentList = useCallback(() => {
-    navigate(Routes.AgentList);
-  }, [navigate]);
-
-  const navigateToAgent = useCallback(
-    (id: string) => () => {
-      navigate(`${Routes.Agent}/${id}`);
-    },
-    [navigate],
-  );
-
-  const navigateToAgentLogs = useCallback(
-    (id: string) => () => {
-      navigate(`${Routes.AgentLogPage}/${id}`);
-    },
-    [navigate],
-  );
-
-  const navigateToAgentTemplates = useCallback(() => {
-    navigate(Routes.AgentTemplates);
-  }, [navigate]);
-
-  const navigateToSearchList = useCallback(() => {
-    navigate(Routes.Searches);
-  }, [navigate]);
-
-  const navigateToSearch = useCallback(
-    (id: string) => () => {
-      navigate(`${Routes.Search}/${id}`);
-    },
-    [navigate],
-  );
 
   const navigateToChunkParsedResult = useCallback(
     (id: string, knowledgeId?: string) => () => {
@@ -145,14 +109,7 @@ export const useNavigatePage = () => {
     navigateToChunkParsedResult,
     getQueryString,
     navigateToChunk,
-    navigateToAgents,
-    navigateToAgent,
-    navigateToAgentLogs,
-    navigateToAgentTemplates,
-    navigateToSearchList,
-    navigateToSearch,
     navigateToFiles,
-    navigateToAgentList,
     navigateToOldProfile,
     navigateToDataflowResult,
   };

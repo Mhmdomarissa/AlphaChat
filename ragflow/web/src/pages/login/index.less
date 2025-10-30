@@ -54,6 +54,7 @@
     justify-content: center;
     flex: 1;
     position: relative;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
     &::before {
       content: ' ';
       position: absolute;
@@ -61,7 +62,7 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background-color: rgba(24, 73, 169, 0.6);
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
       background-image: url('@/assets/svg/login-background.svg');
       background-size: cover;
       background-blend-mode: multiply;
@@ -70,9 +71,10 @@
       z-index: -1;
     }
     .white {
+      color: #ffffff;
     }
     .pink {
-      color: #e9d7fe;
+      color: #00ff88;
     }
     .rightPanel {
       max-width: 670px;
@@ -82,24 +84,23 @@
         font-weight: 600;
         line-height: 90px;
         letter-spacing: -1.44px;
+        color: #ffffff;
       }
       .loginDescription {
         font-size: 20px;
         font-style: normal;
         font-weight: 500;
         line-height: 30px;
+        color: #00ff88;
       }
-      .loginRateNumber {
-        font-size: 16px;
+      .alphaRagLine {
+        font-size: 18px;
         font-style: normal;
-        font-weight: 600;
-        line-height: 24px;
-      }
-      .loginRateReviews {
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 24px;
+        font-weight: 400;
+        line-height: 28px;
+        color: #ffffff;
+        text-align: center;
+        margin-top: 20px;
       }
     }
   }

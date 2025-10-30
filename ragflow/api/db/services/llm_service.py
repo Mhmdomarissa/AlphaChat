@@ -70,7 +70,7 @@ def get_init_tenant_llm(user_id):
                     "model_type": "embedding",
                     "api_key": "",
                     "api_base": "",
-                    "max_tokens": 1024 if buildin_embedding_model == "BAAI/bge-large-zh-v1.5@BAAI" else 512,
+                    "max_tokens": 8192 if buildin_embedding_model == "BAAI/bge-m3@BAAI" else 512,
                 }
             )
 

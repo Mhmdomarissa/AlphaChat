@@ -93,7 +93,7 @@ class DefaultEmbedding(Base):
                         DefaultEmbedding._model_name = model_name
                     except Exception:
                         model_dir = snapshot_download(
-                            repo_id="BAAI/bge-large-zh-v1.5", local_dir=os.path.join(get_home_cache_dir(), re.sub(r"^[a-zA-Z0-9]+/", "", model_name)), local_dir_use_symlinks=False
+                            repo_id="BAAI/bge-m3", local_dir=os.path.join(get_home_cache_dir(), re.sub(r"^[a-zA-Z0-9]+/", "", model_name)), local_dir_use_symlinks=False
                         )
                         DefaultEmbedding._model = FlagModel(model_dir, query_instruction_for_retrieval="为这个句子生成表示以用于检索相关文章：", use_fp16=torch.cuda.is_available())
                     finally:
@@ -746,7 +746,7 @@ class SILICONFLOWEmbed(Base):
         token_count = 0
         for i in range(0, len(texts), batch_size):
             texts_batch = texts[i : i + batch_size]
-            if self.model_name in ["BAAI/bge-large-zh-v1.5", "BAAI/bge-large-en-v1.5"]:
+            if self.model_name in ["BAAI/bge-large-zh-v1.5", "BAAI/bge-large-en-v1.5", "BAAI/bge-base-en-v1.5", "BAAI/bge-small-en-v1.5"]:
                 # limit 512, 340 is almost safe
                 texts_batch = [" " if not text.strip() else truncate(text, 340) for text in texts_batch]
             else:

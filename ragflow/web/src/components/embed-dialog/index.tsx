@@ -78,9 +78,7 @@ function EmbedDialog({
     const baseRoute =
       embedType === 'widget'
         ? Routes.ChatWidget
-        : from === SharedFrom.Agent
-          ? Routes.AgentShare
-          : Routes.ChatShare;
+        : Routes.ChatShare;
     let src = `${location.origin}${baseRoute}?shared_id=${token}&from=${from}&auth=${beta}`;
     if (visibleAvatar) {
       src += '&visible_avatar=1';
@@ -240,7 +238,7 @@ function EmbedDialog({
             </div>
           </div>
           <div className=" font-medium mt-4 mb-1">
-            {t(isAgent ? 'flow' : 'chat', { keyPrefix: 'header' })}
+            {t('chat', { keyPrefix: 'header' })}
             <span className="ml-1 inline-block">ID</span>
           </div>
           <div className="bg-bg-card rounded-lg flex justify-between p-2">
@@ -249,15 +247,11 @@ function EmbedDialog({
           </div>
           <a
             className="cursor-pointer text-accent-primary inline-block"
-            href={
-              isAgent
-                ? 'https://ragflow.io/docs/dev/http_api_reference#create-session-with-agent'
-                : 'https://ragflow.io/docs/dev/http_api_reference#create-session-with-chat-assistant'
-            }
+            href="https://ragflow.io/docs/dev/http_api_reference#create-session-with-chat-assistant"
             target="_blank"
             rel="noreferrer"
           >
-            {t('howUseId', { keyPrefix: isAgent ? 'flow' : 'chat' })}
+            {t('howUseId', { keyPrefix: 'chat' })}
           </a>
         </section>
       </DialogContent>

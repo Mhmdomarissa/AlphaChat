@@ -43,7 +43,7 @@ export default function DatasetSettings() {
         delimiter: `\n`,
         auto_keywords: 0,
         auto_questions: 0,
-        html4excel: false,
+        html4excel: true,
         topn_tags: 3,
         raptor: {
           use_raptor: false,

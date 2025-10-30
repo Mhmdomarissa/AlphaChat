@@ -247,6 +247,120 @@ const MarkdownContent = ({
         {
           'custom-typography': ({ children }: { children: string }) =>
             renderReference(children),
+          // Enhanced list formatting with professional styling
+          ol: ({ children, ...props }: any) => (
+            <ol 
+              {...props} 
+              className="list-decimal list-inside space-y-2 ml-4 my-4"
+              style={{ 
+                counterReset: 'item',
+                paddingLeft: '1.5rem'
+              }}
+            >
+              {children}
+            </ol>
+          ),
+          ul: ({ children, ...props }: any) => (
+            <ul 
+              {...props} 
+              className="list-disc list-inside space-y-2 ml-4 my-4"
+              style={{ paddingLeft: '1.5rem' }}
+            >
+              {children}
+            </ul>
+          ),
+          li: ({ children, ...props }: any) => (
+            <li 
+              {...props} 
+              className="mb-2 leading-relaxed"
+              style={{ 
+                display: 'list-item',
+                marginBottom: '0.5rem',
+                lineHeight: '1.6'
+              }}
+            >
+              {children}
+            </li>
+          ),
+          // Enhanced paragraph formatting
+          p: ({ children, ...props }: any) => (
+            <p 
+              {...props} 
+              className="mb-4 leading-relaxed text-gray-800"
+              style={{ 
+                marginBottom: '1rem',
+                lineHeight: '1.6',
+                color: '#374151'
+              }}
+            >
+              {children}
+            </p>
+          ),
+          // Enhanced heading formatting
+          h1: ({ children, ...props }: any) => (
+            <h1 
+              {...props} 
+              className="text-2xl font-bold mb-4 text-gray-900 border-b border-gray-200 pb-2"
+              style={{ 
+                fontSize: '1.5rem',
+                fontWeight: 'bold',
+                marginBottom: '1rem',
+                color: '#111827',
+                borderBottom: '1px solid #e5e7eb',
+                paddingBottom: '0.5rem'
+              }}
+            >
+              {children}
+            </h1>
+          ),
+          h2: ({ children, ...props }: any) => (
+            <h2 
+              {...props} 
+              className="text-xl font-semibold mb-3 text-gray-800"
+              style={{ 
+                fontSize: '1.25rem',
+                fontWeight: '600',
+                marginBottom: '0.75rem',
+                color: '#1f2937'
+              }}
+            >
+              {children}
+            </h2>
+          ),
+          h3: ({ children, ...props }: any) => (
+            <h3 
+              {...props} 
+              className="text-lg font-medium mb-2 text-gray-700"
+              style={{ 
+                fontSize: '1.125rem',
+                fontWeight: '500',
+                marginBottom: '0.5rem',
+                color: '#374151'
+              }}
+            >
+              {children}
+            </h3>
+          ),
+          // Enhanced blockquote for source citations
+          blockquote: ({ children, ...props }: any) => (
+            <blockquote 
+              {...props} 
+              className="border-l-4 border-blue-500 pl-4 py-2 my-4 bg-blue-50 rounded-r"
+              style={{ 
+                borderLeft: '4px solid #3b82f6',
+                paddingLeft: '1rem',
+                paddingTop: '0.5rem',
+                paddingBottom: '0.5rem',
+                marginTop: '1rem',
+                marginBottom: '1rem',
+                backgroundColor: '#eff6ff',
+                borderRadius: '0 0.375rem 0.375rem 0'
+              }}
+            >
+              {children}
+            </blockquote>
+          ),
+          // Enhanced code formatting
           code(props: any) {
             const { children, className, ...rest } = props;
             const restProps = omit(rest, 'node');
@@ -257,18 +371,83 @@ const MarkdownContent = ({
                 PreTag="div"
                 language={match[1]}
                 wrapLongLines
+                className="rounded-lg shadow-sm"
+                style={{
+                  borderRadius: '0.5rem',
+                  boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)'
+                }}
               >
                 {String(children).replace(/\n$/, '')}
               </SyntaxHighlighter>
             ) : (
               <code
                 {...restProps}
-                className={classNames(className, 'text-wrap')}
+                className={classNames(className, 'text-wrap bg-gray-100 px-1 py-0.5 rounded text-sm')}
+                style={{
+                  backgroundColor: '#f3f4f6',
+                  padding: '0.125rem 0.25rem',
+                  borderRadius: '0.25rem',
+                  fontSize: '0.875rem'
+                }}
               >
                 {children}
               </code>
             );
           },
+          // Enhanced table formatting
+          table: ({ children, ...props }: any) => (
+            <div className="overflow-x-auto my-4">
+              <table 
+                {...props} 
+                className="min-w-full border-collapse border border-gray-300 rounded-lg shadow-sm"
+                style={{
+                  minWidth: '100%',
+                  borderCollapse: 'collapse',
+                  border: '1px solid #d1d5db',
+                  borderRadius: '0.5rem',
+                  boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)'
+                }}
+              >
+                {children}
+              </table>
+            </div>
+          ),
+          thead: ({ children, ...props }: any) => (
+            <thead 
+              {...props} 
+              className="bg-gray-50"
+              style={{ backgroundColor: '#f9fafb' }}
+            >
+              {children}
+            </thead>
+          ),
+          th: ({ children, ...props }: any) => (
+            <th 
+              {...props} 
+              className="px-4 py-2 text-left font-semibold text-gray-700 border-b border-gray-300"
+              style={{
+                padding: '0.5rem 1rem',
+                textAlign: 'left',
+                fontWeight: '600',
+                color: '#374151',
+                borderBottom: '1px solid #d1d5db'
+              }}
+            >
+              {children}
+            </th>
+          ),
+          td: ({ children, ...props }: any) => (
+            <td 
+              {...props} 
+              className="px-4 py-2 border-b border-gray-200"
+              style={{
+                padding: '0.5rem 1rem',
+                borderBottom: '1px solid #e5e7eb'
+              }}
+            >
+              {children}
+            </td>
+          ),
         } as any
       }
     >

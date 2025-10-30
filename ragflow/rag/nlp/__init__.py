@@ -575,7 +575,7 @@ def hierarchical_merge(bull, sections, depth):
     return res
 
 
-def naive_merge(sections: str | list, chunk_token_num=128, delimiter="\n。；！？", overlapped_percent=0):
+def naive_merge(sections: str | list, chunk_token_num=512, delimiter="\n。；！？", overlapped_percent=0.15):
     from deepdoc.parser.pdf_parser import RAGFlowPdfParser
     if not sections:
         return []
@@ -620,7 +620,7 @@ def naive_merge(sections: str | list, chunk_token_num=128, delimiter="\n。；�
     return cks
 
 
-def naive_merge_with_images(texts, images, chunk_token_num=128, delimiter="\n。；！？", overlapped_percent=0):
+def naive_merge_with_images(texts, images, chunk_token_num=512, delimiter="\n。；！？", overlapped_percent=0.15):
     from deepdoc.parser.pdf_parser import RAGFlowPdfParser
     if not texts or len(texts) != len(images):
         return [], []
@@ -717,7 +717,7 @@ def concat_img(img1, img2):
     return new_image
 
 
-def naive_merge_docx(sections, chunk_token_num=128, delimiter="\n。；！？"):
+def naive_merge_docx(sections, chunk_token_num=512, delimiter="\n。；！？"):
     if not sections:
         return [], []
 

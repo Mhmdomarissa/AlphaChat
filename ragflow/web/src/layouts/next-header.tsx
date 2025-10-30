@@ -18,14 +18,11 @@ import { camelCase } from 'lodash';
 import {
   ChevronDown,
   CircleHelp,
-  Cpu,
   File,
-  Github,
   House,
   Library,
   MessageSquareText,
   Moon,
-  Search,
   Sun,
 } from 'lucide-react';
 import React, { useCallback, useMemo } from 'react';
@@ -68,8 +65,6 @@ export function Header() {
       { path: Routes.Root, name: t('header.Root'), icon: House },
       { path: Routes.Datasets, name: t('header.dataset'), icon: Library },
       { path: Routes.Chats, name: t('header.chat'), icon: MessageSquareText },
-      { path: Routes.Searches, name: t('header.search'), icon: Search },
-      { path: Routes.Agents, name: t('header.flow'), icon: Cpu },
       { path: Routes.Files, name: t('header.fileManager'), icon: File },
     ],
     [t],
@@ -114,15 +109,6 @@ export function Header() {
           className="size-10 mr-[12] cursor-pointer"
           onClick={handleLogoClick}
         />
-        <a
-          className="flex items-center gap-1.5 text-text-secondary"
-          target="_blank"
-          href="https://github.com/infiniflow/ragflow"
-          rel="noreferrer"
-        >
-          <Github className="size-4" />
-          {/* <span className=" text-base">21.5k stars</span> */}
-        </a>
       </div>
       <Segmented
         options={options}

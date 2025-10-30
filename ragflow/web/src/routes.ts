@@ -72,11 +72,6 @@ const routes = [
     layout: false,
   },
   {
-    path: Routes.AgentShare,
-    component: `@/pages${Routes.AgentShare}`,
-    layout: false,
-  },
-  {
     path: Routes.ChatWidget,
     component: `@/pages${Routes.ChatWidget}`,
     layout: false,
@@ -137,16 +132,8 @@ const routes = [
     component: '@/pages/flow/list',
   },
   {
-    path: Routes.AgentList,
-    component: `@/pages/${Routes.Agents}`,
-  },
-  {
     path: '/flow/:id',
     component: '@/pages/flow',
-  },
-  {
-    path: '/search',
-    component: '@/pages/search',
   },
   {
     path: '/document/:id',
@@ -196,53 +183,6 @@ const routes = [
     path: Routes.Chat + '/:id',
     layout: false,
     component: `@/pages${Routes.Chats}/chat`,
-  },
-  {
-    path: Routes.Searches,
-    layout: false,
-    component: '@/layouts/next',
-    routes: [
-      {
-        path: Routes.Searches,
-        component: `@/pages${Routes.Searches}`,
-      },
-    ],
-  },
-  {
-    path: `${Routes.Search}/:id`,
-    layout: false,
-    component: `@/pages${Routes.Search}`,
-  },
-  {
-    path: `${Routes.SearchShare}`,
-    layout: false,
-    component: `@/pages${Routes.SearchShare}`,
-  },
-  {
-    path: Routes.Agents,
-    layout: false,
-    component: '@/layouts/next',
-    routes: [
-      {
-        path: Routes.Agents,
-        component: `@/pages${Routes.Agents}`,
-      },
-    ],
-  },
-  {
-    path: `${Routes.AgentLogPage}/:id`,
-    layout: false,
-    component: `@/pages${Routes.Agents}${Routes.AgentLogPage}`,
-  },
-  {
-    path: `${Routes.Agent}/:id`,
-    layout: false,
-    component: `@/pages${Routes.Agent}`,
-  },
-  {
-    path: Routes.AgentTemplates,
-    layout: false,
-    component: `@/pages${Routes.Agents}${Routes.AgentTemplates}`,
   },
   {
     path: Routes.Files,

@@ -92,7 +92,7 @@ class DefaultRerank(Base):
         old_dynamic_batch_size = self._dynamic_batch_size
         if max_batch_size is not None:
             self._dynamic_batch_size = max_batch_size
-        res = np.array(len(pairs), dtype=float)
+        res = np.zeros(len(pairs), dtype=float)
         i = 0
         while i < len(pairs):
             cur_i = i
@@ -129,6 +129,9 @@ class DefaultRerank(Base):
             scores = self._model.compute_score(batch_pairs, max_length=max_length, normalize=True)
         if not isinstance(scores, Iterable):
             scores = [scores]
+        # Ensure scores is always a numpy array
+        import numpy as np
+        scores = np.array(scores)
         return scores
 
     def similarity(self, query: str, texts: list):

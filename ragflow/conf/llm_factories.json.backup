@@ -1121,18 +1121,10 @@
             "status": "1",
             "llm": [
                 {
-                    "llm_name": "BAAI/bge-m3",
-                    "tags": "TEXT EMBEDDING",
-                    "max_tokens": 8192,
-                    "model_type": "embedding",
-                    "is_tools": false
-                },
-                {
-                    "llm_name": "BAAI/bge-reranker-v2-m3",
-                    "tags": "LLM,RE-RANK,8k",
-                    "max_tokens": 8192,
-                    "model_type": "rerank",
-                    "is_tools": false
+                    "llm_name": "BAAI/bge-large-zh-v1.5",
+                    "tags": "TEXT EMBEDDING,",
+                    "max_tokens": 1024,
+                    "model_type": "embedding"
                 }
             ]
         },

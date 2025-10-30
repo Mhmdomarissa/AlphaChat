@@ -196,3 +196,11 @@ dist
 # Default backup dir
 backup
 git-backup-*.tar.gz
+
+# Exclude tests and editor rules
+.cursorrules
+**/tests/**
+**/test/**
+**/*_test.*
+**/test_*.py
+ragflow/test_files/**

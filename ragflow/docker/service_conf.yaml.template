@@ -72,22 +72,44 @@ redis:
 #   scheme: 'mysql'  # Storage type, such as s3, oss, azure, etc.
 #   config:
 #     oss_table: 'opendal_storage'
-# user_default_llm:
-#   factory: 'BAAI'
-#   api_key: 'backup'
-#   base_url: 'backup_base_url'
-#   default_models:
-#     chat_model:
-#       name: 'qwen2.5-7b-instruct'
-#       factory: 'xxxx'
-#       api_key: 'xxxx'
-#       base_url: 'https://api.xx.com'
-#     embedding_model:
-#       name: 'bge-m3'
-#     rerank_model: 'bge-reranker-v2'
-#     asr_model:
-#       model: 'whisper-large-v3' # alias of name
-#     image2text_model: ''
+user_default_llm:
+  factory: 'VLLM'
+  base_url: 'http://172.21.0.7:8000/v1'
+  api_key: 'token-abc123'
+  default_models:
+    chat_model:
+      name: 'Qwen/Qwen2.5-7B-Instruct'
+    embedding_model:
+      name: 'BAAI/bge-large-en-v1.5'
+      factory: 'BAAI'
+    rerank_model: 'BAAI/bge-reranker-v2-m3'
+    asr_model:
+      model: 'whisper-large-v3'
+    image2text_model: ''
+
+# Optimized retrieval and chat settings for better accuracy
+retrieval:
+  similarity_threshold: 0.6
+  vector_similarity_weight: 0.7
+  top_n: 5
+
+rerank:
+  model: "bge-reranker-v2"
+  enabled: true
+
+optimization:
+  multi_turn: true
+  knowledge_graph: false
+
+llm:
+  temperature: 0.1
+  top_p: 0.9
+  presence_penalty: 0.6
+  frequency_penalty: 0.0
+  max_tokens: 512
+  max_context_tokens: 25000
+
+system_prompt: "You are a professional AI assistant specializing in document analysis and question answering."
 # oauth:
 #   oauth2:
 #     display_name: "OAuth2"

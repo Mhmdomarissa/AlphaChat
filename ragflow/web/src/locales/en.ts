@@ -86,8 +86,6 @@ export default {
       setting: 'User settings',
       logout: 'Log out',
       fileManager: 'File Management',
-      flow: 'Agent',
-      search: 'Search',
       welcome: 'Welcome to',
       dataset: 'Dataset',
     },
@@ -516,10 +514,36 @@ This auto-tagging feature enhances retrieval by adding another layer of domain-s
       knowledgeBasesTip:
         'Select the knowledge bases to associate with this chat assistant. An empty knowledge base will not appear in the dropdown list.',
       system: 'System prompt',
-      systemInitialValue: `You are an intelligent assistant. Please summarize the content of the knowledge base to answer the question. Please list the data in the knowledge base and answer in detail. When all knowledge base content is irrelevant to the question, your answer must include the sentence "The answer you are looking for is not found in the knowledge base!" Answers need to consider chat history.
-      Here is the knowledge base:
-      {knowledge}
-      The above is the knowledge base.`,
+      systemInitialValue: `You are a professional AI assistant. When responding to questions about any document type:
+
+1. ALWAYS ask clarifying questions when:
+   - Multiple sections/pages exist: 'Which specific section/page do you want me to focus on?'
+   - Information is ambiguous: 'Could you clarify what specific information you're looking for?'
+   - Multiple interpretations possible: 'Are you asking about [option A] or [option B]?'
+   - Context is unclear: 'What time period/scope are you interested in?'
+
+2. ALWAYS provide source citations:
+   - Document name: 'Source: [Document Name]'
+   - Page/section references: 'Found on page X, section Y'
+   - Specific locations: 'Located in [specific part of document]'
+   - For Excel: 'Sheet: [Sheet Name], Cell: A1'
+
+3. ALWAYS include confidence scores:
+   - High confidence (90-100%): 'I'm 95% confident this information is accurate'
+   - Medium confidence (70-89%): 'I'm 80% confident, but please verify'
+   - Low confidence (<70%): 'I'm 60% confident, this may need verification'
+
+4. For any document type:
+   - Ask for clarification when information is incomplete
+   - Specify which part of the document contains the answer
+   - Indicate if the information might be outdated or incomplete
+   - Suggest additional sources if available
+
+Here is the knowledge base:
+{knowledge}
+The above is the knowledge base.
+
+If no relevant information is found, say 'Not found in knowledge base.'`,
       systemMessage: 'Please input!',
       systemTip:
         'Your prompts or instructions for the LLM, including but not limited to its role, the desired length, tone, and language of its answers. If your model has native support for reasoning, you can add //no_thinking add the prompt to stop reasoning.',
@@ -1583,33 +1607,6 @@ This delimiter is used to split the input text into several text pieces echo of 
       serverType: 'Server Type',
       addMCP: 'Add MCP',
       editMCP: 'Edit MCP',
-    },
-    search: {
-      searchApps: 'Search Apps',
-      createSearch: 'Create Search',
-      searchGreeting: 'How can I help you today ？',
-      profile: 'Hide Profile',
-      locale: 'Locale',
-      embedCode: 'Embed code',
-      id: 'ID',
-      copySuccess: 'Copy Success',
-      welcomeBack: 'Welcome back',
-      searchSettings: 'Search Settings',
-      name: 'Name',
-      avatar: 'Avatar',
-      description: 'Description',
-      datasets: 'Datasets',
-      rerankModel: 'Rerank Model',
-      AISummary: 'AI Summary',
-      enableWebSearch: 'Enable Web Search',
-      enableRelatedSearch: 'Enable Related Search',
-      showQueryMindmap: 'Show Query Mindmap',
-      embedApp: 'Embed App',
-      relatedSearch: 'Related Search',
-      descriptionValue: 'You are an intelligent assistant.',
-      okText: 'Save',
-      cancelText: 'Cancel',
-      chooseDataset: 'Please select a dataset first',
     },
     language: {
       english: 'English',

@@ -41,6 +41,7 @@ from rag.app.tag import label_question
 from rag.nlp.search import index_name
 from rag.prompts.generator import chunks_format, citation_prompt, cross_languages, full_question, kb_prompt, keyword_extraction, message_fit_in, \
     gen_meta_filter, PROMPT_JINJA_ENV, ASK_SUMMARY
+from rag.app.excel_qa_enhancer import ExcelQaEnhancer
 from rag.utils import num_tokens_from_string, rmSpace
 from rag.utils.tavily_conn import Tavily
 
@@ -476,6 +477,26 @@ def chat(dialog, messages, stream=True, **kwargs):
                                                        LLMBundle(dialog.tenant_id, LLMType.CHAT))
                 if ck["content_with_weight"]:
                     kbinfos["chunks"].insert(0, ck)
+            
+            # Excel accuracy validation for financial data
+            if kbinfos.get("chunks") and any("excel" in str(chunk.get("source", "")).lower() or 
+                                           "xlsx" in str(chunk.get("source", "")).lower() or
+                                           "xls" in str(chunk.get("source", "")).lower() 
+                                           for chunk in kbinfos["chunks"]):
+                excel_enhancer = ExcelQaEnhancer()
+                validation_result = excel_enhancer.validate_excel_query(questions[-1], kbinfos["chunks"])
+                
+                # If ambiguity detected, return clarification questions
+                if validation_result.get("ambiguity_detected"):
+                    enhanced_response = validation_result.get("enhanced_response", "")
+                    yield {"answer": enhanced_response, "reference": {"chunks": [], "doc_aggs": []}}
+                    return
+                
+                # If no exact matches found, return suggestions
+                if not validation_result.get("exact_matches") and not validation_result.get("partial_matches"):
+                    enhanced_response = validation_result.get("enhanced_response", "")
+                    yield {"answer": enhanced_response, "reference": {"chunks": [], "doc_aggs": []}}
+                    return
 
             knowledges = kb_prompt(kbinfos, max_tokens)
 

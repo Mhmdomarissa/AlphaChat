@@ -78,7 +78,7 @@ redis:
 #       base_url: 'https://api.xx.com'
 #     embedding_model:
 #       name: 'bge-m3'
-#     rerank_model: 'bge-reranker-v2'
+#     rerank_model: 'BAAI/bge-reranker-v2-m3'
 #     asr_model:
 #       model: 'whisper-large-v3' # alias of name
 #     image2text_model: ''

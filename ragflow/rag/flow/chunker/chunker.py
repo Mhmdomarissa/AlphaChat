@@ -47,9 +47,9 @@ class ChunkerParam(ProcessParamBase):
             # "Tag" # TODO: Other method
         ]
         self.method = "general"
-        self.chunk_token_size = 900
+        self.chunk_token_size = 512
         self.delimiter = "\n"
-        self.overlapped_percent = 0.1  # Added 10% overlap for better context preservation
+        self.overlapped_percent = 0.15  # Added 15% overlap for better context preservation
         self.page_rank = 0
         self.auto_keywords = 0
         self.auto_questions = 0
